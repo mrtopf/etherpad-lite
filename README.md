@@ -1,3 +1,10 @@
+# About this version
+#
+This version is a special version for YouthPart, mostly for changing some texts and adding logos etc. 
+
+It's not supposed to be merged into the main development branch, best would be to have some theming
+support there instead. 
+
 # Our goal is to make collaborative editing the standard on the web
 
 # About
