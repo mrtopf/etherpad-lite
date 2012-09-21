@@ -1,10 +1,12 @@
+
 var startTime = new Date().getTime();
 var fs = require("fs");
 var ueberDB = require("ueberDB");
 var mysql = require("mysql");
 var async = require("async");
-var Changeset = require("../node/utils/Changeset");
-var AttributePoolFactory = require("../node/utils/AttributePoolFactory");
+var Changeset = require("ep_etherpad-lite/static/js/Changeset");
+var randomString = require('ep_etherpad-lite/static/js/pad_utils').randomString;
+var AttributePool = require("ep_etherpad-lite/static/js/AttributePool");
 
 var settingsFile = process.argv[2];
 var sqlOutputFile = process.argv[3];
@@ -382,7 +384,7 @@ function convertPad(padId, callback)
         }
         
         //generate the latest atext
-        var fullAPool = AttributePoolFactory.createAttributePool().fromJsonable(apool);
+        var fullAPool = (new AttributePool()).fromJsonable(apool);
         var keyRev = Math.floor(padmeta.head / padmeta.keyRevInterval) * padmeta.keyRevInterval;
         var atext = changesetsMeta[keyRev].atext;
         var curRev = keyRev;
@@ -449,19 +451,4 @@ function parsePage(array, pageStart, offsets, data, json)
     //update start
     start+=unitLength;
   }
-}
-
-/**
- * Generates a random String with the given length. Is needed to generate the Author Ids
- */
-function randomString(len) 
-{
-  var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-  var randomstring = '';
-  for (var i = 0; i < len; i++)
-  {
-    var rnum = Math.floor(Math.random() * chars.length);
-    randomstring += chars.substring(rnum, rnum + 1);
-  }
-  return randomstring;
 }

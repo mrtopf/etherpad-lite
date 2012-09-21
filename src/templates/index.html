@@ -1,0 +1,98 @@
+<!doctype html>
+<html>   
+        <title>Etherpad Lite</title> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        <link href="/static/custom/foundation.css" rel="stylesheet"> 
+        <link href="/static/custom/index.css" rel="stylesheet"> 
+        <script src="static/custom/index.js"></script>
+        <div class="container"> 
+            <div class="row" style="margin-top: 10%; margin-bottom: 50px;">
+                <div class="two columns centered" style="text-align: center;">
+                    <a href="http://youthpart.org"><img src="static/custom/img/logo.png" /></a><br>
+                    <strong>ETHERPAD-SERVER</strong>
+                </div>
+            </div>
+            <div class="row">
+                <div class="six columns centered panel" style="text-align: center; padding: 30px 0;">
+                    <div class="button large radius translate" onclick="go2Random()">Neues Pad erstellen</div>
+                    <div id="label" style="margin: 20px 0 10px;" class="translate">oder erzeuge/erstelle ein Pad mit folgendem Namen:</div> 
+                    <form class="epform" action="#" onsubmit="go2Name();return false;"> 
+                        <div class="form-field">
+                            <input type="text" id="padname" autofocus class="text-input nice small"> 
+                            <input type="submit" value="Erstellen" class="submitbutton"> 
+                        </div>
+                    </form> 
+                </div>
+            </div>
+            <div class="row muted" style="margin-top: 200px;">
+            <hr>
+                <h5>Impressum</h5>
+                yourpart.eu (pad.youthtools.de) ist ein Internetangebot von IJAB - Fachstelle für Internationale Jugendarbeit der Bundesrepublik Deutschland e.V. 
+                Verantwortlich im Sinne des § 5 TMG und §55 I und II RStV ist
+            </div>
+            <div class="row muted" id="impressum" style="margin-top: 10px;">
+                <div class="four columns ">
+                    <a href="http://ijab.de">IJAB - Fachstelle für Internationale Jugendarbeit
+                    der Bundesrepublik Deutschland e.V.</a><br>
+                    Godesberger Allee 142-148<br>
+                    D-53175 Bonn<br>
+                    Tel.: +49 228 9506-0<br>
+                    Fax: +49 228 9506-199<br>
+                    E-Mail: <a href="mailto: info@ujab.de">info@ijab.de</a><br>
+                </div>
+                <div class="eight columns ">
+
+                    <p>
+                    Vereinsregister (nach § 6 Nr. 1 TDG):<br>
+                    Amtsgericht Bonn VR 3584<br>
+                    </p>
+
+                    <p>
+                    Umsatzsteuer-Identifikationsnummer (nach § 27 Umsatzsteuergesetz)<br>
+                    DE221645351<br>
+                    </p>
+
+                    <p>
+                    Vertretungsberechtigt:<br>
+                    Marie-Luise Dreber, Direktorin der Geschäftsstelle<br>
+                    </p>
+                                    
+                </div>
+            </div>
+            <div class="row muted">
+                <div class="twelve columns">
+                Dieses Portal nutzt die Open Source-Software <a href="https://github.com/Pita/etherpad-lite">Etherpad Lite</a>, Anpassungen für dieses Portal
+                sind im Branch "youthpart" in <a href="https://github.com/mrtopf/etherpad-lite/tree/youthpart">diesem Repository</a> zu finden.
+                </div>
+            </div>
+        </div>
+        <script> 
+      
+            function go2Name() 
+            {
+                var padname = document.getElementById("padname").value;
+                padname.length > 0 ? window.location = "p/" + padname : alert("Please enter a name")
+            }
+ 
+            function go2Random() 
+            {
+                window.location = "p/" + randomPadName();
+            }
+ 
+            function randomPadName() 
+            {
+                var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+                var string_length = 10;
+                var randomstring = '';
+                for (var i = 0; i < string_length; i++) 
+                {
+                    var rnum = Math.floor(Math.random() * chars.length);
+                    randomstring += chars.substring(rnum, rnum + 1);
+                }
+                return randomstring;
+            }
+            
+            //start the costum js
+            if(typeof costumStart == "function") customStart();
+        </script> 
+</html>
